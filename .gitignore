@@ -1,0 +1,7 @@
+/vendor
+/tmp
+/__pycache__
+/memo.txt
+/config/api_key.json
+/.idea
+__pycache__
