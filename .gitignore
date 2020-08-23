@@ -4,4 +4,4 @@
 /memo.txt
 /config/api_key.json
 /.idea
-__pycache__
+__pycache__/

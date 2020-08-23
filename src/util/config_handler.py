@@ -26,6 +26,12 @@ class ConfigHandler:
         else:
             return self.lolipop_root+ "tmp/news_release_status.txt"
 
+    def get_message_path(self):
+        if self.is_local():
+            return self.local_root + "static_data/message.json"
+        else:
+            return self.lolipop_root + "static_data/message.json"
+
     def is_local(self):
         if os.path.exists(self.local_root):
             return True
