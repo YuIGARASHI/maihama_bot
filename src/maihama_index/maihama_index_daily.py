@@ -4,6 +4,7 @@ sys.path.append("/home/users/0/her.jp-everyday-micmin/web/maihama_bot/vendor")
 from src.maihama_index.weather_handler import WeatherHandler, WeatherEnum, WeatherInfo
 from src.tweet.tweet_handler import TweetHandler
 import datetime
+import random
 
 class MaihamaIndex:
     def __init__(self):
@@ -85,29 +86,51 @@ class MaihamaIndexMaker:
         # ここはできるだけいろんなバリエーションがあったほうがよい
         # とりあえず仮置き
         if maihama_index.wind_score > 0:
-            return "風が強いかも。\n帽子が飛ばされないように気を付けてね！\n"
+            return "風が強いかも。\n帽子が飛ばされないように気を付けてね💕\n"
         if maihama_index.uv_score:
-            return "紫外線に注意！\nUVケアを忘れずに～\n"
+            return "紫外線に注意！\nUVケアを忘れずに～🎀\n"
         if maihama_index.rain_score > 0:
             return "雨にご用心。\nカサを忘れずに楽しんでね♪\n"
         if maihama_index.discomfort_score > 0:
-            return "とっても暑い！\nこまめに水分をとって楽しんでね♪\n"
+            return "とっても暑い！\nこまめに水分をとって楽しんでね💕\n"
         return "素敵な一日になりそう！\n"
+
+    @staticmethod
+    def make_random_message():
+        '''ユーザへの一言メッセージをランダムに作成する。
+        '''
+        messages = [
+            "ねえ、ミッキー毎日とってもいい天気ねぇ～。うふふふ💛",
+            "さあ～準備はいいかしら？テンションあげていくわよ～",
+            "うふふふ。今日はこの曲で盛り上がりましょう～",
+            "みんな～一緒に踊りましょ～♪",
+            "その調子！すごいわ～♪",
+            "さあ、決めポーズ！",
+            "みんな～ありがとう～とっても素敵～♪💛",
+            "みんな～おもいっきり楽しみましょ♪",
+            "さあ、ボンファイアーダンスで一緒に踊りましょ♪",
+            "あ、それっ♪それっ♪それっ♪",
+            "エルボー！エルボー！インアウトインアウト",
+            "さあ、心の旅に出かけましょう♪",
+            "優しさが愛の扉を開いていくの♪",
+            "なんて美しいのかしら♪",
+            "星に願いをかけたら、夢が現実になるのよ♪",
+            "諦めないで、それが夢を叶える秘訣なのよ♪",
+            "まあ！なんて素敵な夢なんでしょう♪",
+            "あなたの願いが叶いますように...",
+            "願いをかなえたかったら、まずは願いが何かをつきとめなくっちゃ♪",
+            "あなたの願いってどんなこと？",
+            "あなたの心が願うもの、それは夢よ",
+            "何も難しいことはないのよ。気持ちに素直になるだけ♪"
+        ]
+        index = random.randrange(len(messages))
+        return messages[index]
 
     @staticmethod
     def make_tweet_str(maihama_index, message_str, weather_info):
         '''ツイートする文章を構築する。
         '''
-        tweet_str = "【明日の舞浜のお天気☀☁☂☃】\n"
-        tweet_str += ("（" + weather_info.time + "）\n\n")
-
-        star = ""
-        for i in range(5):
-            if i < (5 - maihama_index.total_score/2):
-                star += "★"
-            else:
-                star += "☆"
-        tweet_str += (star + "\n")
+        tweet_str = "♥明日の舞浜のお天気は～？♥\n\n"
 
         # 気象情報
         tweet_str += "天気：" + WeatherInfo.weather_to_str(weather_info.weather) + "\n"
@@ -130,12 +153,13 @@ if __name__ == "__main__":
     # 9:00
     nine_maihama_index = MaihamaIndexMaker.calc_index(nine_weather_info)
     nine_message = MaihamaIndexMaker.make_message(nine_maihama_index)
+    # nine_message = MaihamaIndexMaker.make_random_message()
     nine_tweet_str = MaihamaIndexMaker.make_tweet_str(nine_maihama_index, nine_message, nine_weather_info)
     tweet_handler.post_tweet(nine_tweet_str)
 
     # 17:00
-    fifteen_maihama_index = MaihamaIndexMaker.calc_index(fifteen_weather_info)
-    fifteen_message = MaihamaIndexMaker.make_message(fifteen_maihama_index)
-    fifteen_tweet_str = MaihamaIndexMaker.make_tweet_str(fifteen_maihama_index, fifteen_message, fifteen_weather_info)
-    tweet_handler.post_tweet(fifteen_tweet_str)
+    # fifteen_maihama_index = MaihamaIndexMaker.calc_index(fifteen_weather_info)
+    # fifteen_message = MaihamaIndexMaker.make_message(fifteen_maihama_index)
+    # fifteen_tweet_str = MaihamaIndexMaker.make_tweet_str(fifteen_maihama_index, fifteen_message, fifteen_weather_info)
+    # tweet_handler.post_tweet(fifteen_tweet_str)
 
