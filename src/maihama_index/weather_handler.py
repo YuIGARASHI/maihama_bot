@@ -89,26 +89,23 @@ class WeatherHandler:
         self.app_id = api_key_handler.get_open_weather_api_id()
 
     def get_target_time_index(self, weather_json):
-        '''翌日の9:00, 17:00に該当するインデクスを取得する。
+        '''翌日の12:00に該当するインデクスを取得する。
         '''
         now_date = datetime.datetime.now().strftime('%m月%d日')
-        nine_index = -1
-        fifteen_index = -1
+        target_index = -1
         for i in range(len(weather_json["hourly"])):
             target_time_str = TimeUtil.unixtime_to_datestr(weather_json["hourly"][i]["dt"])
             # 日付が翌日のものになるまでループ
             if now_date in target_time_str:
                 continue
-            if "09:00" in target_time_str:
-                nine_index = i
-            if "17:00" in target_time_str:
-                fifteen_index = i
-            if nine_index != -1 and fifteen_index != -1:
+            if "12:00" in target_time_str:
+                target_index = i
+            if target_index != -1:
                 break # このbreakがないと、翌々日の9:00と17:00のインデクスを取得してしまう可能性がある
-        return nine_index, fifteen_index
+        return target_index
 
     def fetch_tomorrow_weather_info(self):
-        '''翌日の朝・夕の情報を取得する。
+        '''翌日の12:00の天気情報を取得する。
         '''
         params = {
             "lat": self.maihama_lat,
@@ -119,15 +116,12 @@ class WeatherHandler:
         }
         response = requests.get(url=self.endpoint, params=params)
         weather_json =  json.loads(response.text)
-        nine_index, fifteen_index = self.get_target_time_index(weather_json)
-        nine_weather_info = WeatherInfo(weather_json["hourly"][nine_index])
-        fifteen_weather_info = WeatherInfo(weather_json["hourly"][fifteen_index])
-        return nine_weather_info, fifteen_weather_info
+        target_index = self.get_target_time_index(weather_json)
+        weather_info = WeatherInfo(weather_json["hourly"][target_index])
+        return weather_info
 
 
 if __name__ == "__main__":
     weather_handler = WeatherHandler()
-    nine_weather_info, fifteen_weather_info = weather_handler.fetch_tomorrow_weather_info()
-    nine_weather_info.print_myself()
-    print("------------------------------------")
-    fifteen_weather_info.print_myself()
+    weather_info = weather_handler.fetch_tomorrow_weather_info()
+    weather_info.print_myself()

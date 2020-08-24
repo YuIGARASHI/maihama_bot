@@ -96,37 +96,6 @@ class MaihamaIndexMaker:
         return "素敵な一日になりそう！\n"
 
     @staticmethod
-    def make_random_message():
-        '''ユーザへの一言メッセージをランダムに作成する。
-        '''
-        messages = [
-            "ねえ、ミッキー毎日とってもいい天気ねぇ～。うふふふ💛",
-            "さあ～準備はいいかしら？テンションあげていくわよ～",
-            "うふふふ。今日はこの曲で盛り上がりましょう～",
-            "みんな～一緒に踊りましょ～♪",
-            "その調子！すごいわ～♪",
-            "さあ、決めポーズ！",
-            "みんな～ありがとう～とっても素敵～♪💛",
-            "みんな～おもいっきり楽しみましょ♪",
-            "さあ、ボンファイアーダンスで一緒に踊りましょ♪",
-            "あ、それっ♪それっ♪それっ♪",
-            "エルボー！エルボー！インアウトインアウト",
-            "さあ、心の旅に出かけましょう♪",
-            "優しさが愛の扉を開いていくの♪",
-            "なんて美しいのかしら♪",
-            "星に願いをかけたら、夢が現実になるのよ♪",
-            "諦めないで、それが夢を叶える秘訣なのよ♪",
-            "まあ！なんて素敵な夢なんでしょう♪",
-            "あなたの願いが叶いますように...",
-            "願いをかなえたかったら、まずは願いが何かをつきとめなくっちゃ♪",
-            "あなたの願いってどんなこと？",
-            "あなたの心が願うもの、それは夢よ",
-            "何も難しいことはないのよ。気持ちに素直になるだけ♪"
-        ]
-        index = random.randrange(len(messages))
-        return messages[index]
-
-    @staticmethod
     def make_tweet_str(maihama_index, message_str, weather_info):
         '''ツイートする文章を構築する。
         '''
@@ -148,18 +117,10 @@ class MaihamaIndexMaker:
 if __name__ == "__main__":
     weather_handler = WeatherHandler()
     tweet_handler = TweetHandler()
-    nine_weather_info, fifteen_weather_info = weather_handler.fetch_tomorrow_weather_info()
+    weather_info = weather_handler.fetch_tomorrow_weather_info()
 
-    # 9:00
-    nine_maihama_index = MaihamaIndexMaker.calc_index(nine_weather_info)
-    nine_message = MaihamaIndexMaker.make_message(nine_maihama_index)
-    # nine_message = MaihamaIndexMaker.make_random_message()
-    nine_tweet_str = MaihamaIndexMaker.make_tweet_str(nine_maihama_index, nine_message, nine_weather_info)
-    tweet_handler.post_tweet(nine_tweet_str)
-
-    # 17:00
-    # fifteen_maihama_index = MaihamaIndexMaker.calc_index(fifteen_weather_info)
-    # fifteen_message = MaihamaIndexMaker.make_message(fifteen_maihama_index)
-    # fifteen_tweet_str = MaihamaIndexMaker.make_tweet_str(fifteen_maihama_index, fifteen_message, fifteen_weather_info)
-    # tweet_handler.post_tweet(fifteen_tweet_str)
+    maihama_index = MaihamaIndexMaker.calc_index(weather_info)
+    message = MaihamaIndexMaker.make_message(maihama_index)
+    tweet_str = MaihamaIndexMaker.make_tweet_str(maihama_index, message, weather_info)
+    tweet_handler.post_tweet(tweet_str)
 
