@@ -1,7 +1,7 @@
 import sys
 sys.path.append("/home/users/0/her.jp-everyday-micmin/web/maihama_bot/")
 sys.path.append("/home/users/0/her.jp-everyday-micmin/web/maihama_bot/vendor")
-from src.maihama_index.weather_handler import WeatherHandler, WeatherEnum, WeatherInfo
+from src.weather.weather_handler import OWMWeatherHandler, WeatherEnum, OWMWeatherInfo
 from src.tweet.tweet_handler import TweetHandler
 import datetime
 import random
@@ -102,7 +102,7 @@ class MaihamaIndexMaker:
         tweet_str = "♥明日の舞浜のお天気は～？♥\n\n"
 
         # 気象情報
-        tweet_str += "天気：" + WeatherInfo.weather_to_str(weather_info.weather) + "\n"
+        tweet_str += "天気：" + OWMWeatherInfo.weather_to_str(weather_info.weather) + "\n"
         tweet_str += "降水確率：" + weather_info.pop + "%\n"
         tweet_str += "気温：" + weather_info.temp + "℃\n"
         tweet_str += "湿度：" + weather_info.humidity + "%\n"
@@ -115,7 +115,7 @@ class MaihamaIndexMaker:
         return tweet_str
 
 if __name__ == "__main__":
-    weather_handler = WeatherHandler()
+    weather_handler = OWMWeatherHandler()
     tweet_handler = TweetHandler()
     weather_info = weather_handler.fetch_tomorrow_weather_info()
 

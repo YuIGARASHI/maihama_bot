@@ -32,6 +32,12 @@ class ConfigHandler:
         else:
             return self.lolipop_root + "static_data/message.json"
 
+    def get_temperature_exceed_state_path(self):
+        if self.is_local():
+            return self.local_root + "tmp/temperature_exceed_state.txt"
+        else:
+            return self.lolipop_root + "tmp/temperature_exceed_state.txt"
+
     def is_local(self):
         if os.path.exists(self.local_root):
             return True
