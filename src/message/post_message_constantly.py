@@ -7,7 +7,7 @@ from src.util.time_util import TimeUtil
 
 if __name__ == "__main__":
     current_time = TimeUtil.get_current_time_str().split()[1]
-    available_times = ["07:", "10:", "13:", "16:", "19:", "21:"]
+    available_times = ["08:", "12:", "16:", "20:"]
     post_flag = False
     for available_time in available_times:
         if available_time in current_time:
