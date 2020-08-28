@@ -20,12 +20,6 @@ class ConfigHandler:
         else:
             return self.lolipop_root + "tmp/keiyo_line_status.txt"
 
-    def get_news_release_status_path(self):
-        if self.is_local():
-            return self.local_root + "tmp/news_release_status.txt"
-        else:
-            return self.lolipop_root+ "tmp/news_release_status.txt"
-
     def get_message_path(self):
         if self.is_local():
             return self.local_root + "static_data/message.json"
@@ -37,6 +31,12 @@ class ConfigHandler:
             return self.local_root + "tmp/temperature_exceed_state.txt"
         else:
             return self.lolipop_root + "tmp/temperature_exceed_state.txt"
+
+    def get_shopping_state_path(self):
+        if self.is_local():
+            return self.local_root + "tmp/shopping_goods_state.txt"
+        else:
+            return self.lolipop_root + "tmp/shopping_goods_state.txt"
 
     def is_local(self):
         if os.path.exists(self.local_root):
