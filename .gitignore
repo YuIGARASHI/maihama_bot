@@ -5,3 +5,7 @@
 /config/api_key.json
 /.idea
 __pycache__/
+/static_data/image
+/src/tools/word_cloud/images
+/src/tools/word_cloud/texts
+/src/tools/word_cloud/output
