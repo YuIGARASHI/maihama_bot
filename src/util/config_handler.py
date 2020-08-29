@@ -7,7 +7,7 @@ class ConfigHandler:
     def __init__(self):
         self.local_roots = [
             "C:/Users/Yu IGARASHI/PycharmProjects/maihama_bot/",
-            "C:/Users/yukodev/dev/maihama_bot"
+            "C:/Users/yukodev/dev/maihama_bot/"
         ]
         self.lolipop_root = "/home/users/0/her.jp-everyday-micmin/web/maihama_bot/"
 
