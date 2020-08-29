@@ -1,9 +1,9 @@
 import sys
 sys.path.append("/home/users/0/her.jp-everyday-micmin/web/maihama_bot/")
 sys.path.append("/home/users/0/her.jp-everyday-micmin/web/maihama_bot/vendor")
-from src.shopping.shopping_handler import ShoppingHandler
-from src.util.config_handler import ConfigHandler
-from src.tweet.tweet_handler import TweetHandler
+from src.web.shopping.shopping_handler import ShoppingHandler
+from src.web.util.config_handler import ConfigHandler
+from src.web.tweet.tweet_handler import TweetHandler
 import codecs
 
 if __name__ == "__main__":

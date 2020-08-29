@@ -1,10 +1,10 @@
 import sys
 sys.path.append("/home/users/0/her.jp-everyday-micmin/web/maihama_bot/")
 sys.path.append("/home/users/0/her.jp-everyday-micmin/web/maihama_bot/vendor")
-from src.tweet.tweet_handler import TweetHandler
-from src.util.config_handler import ConfigHandler
-from src.weather.weather_handler import AmedasWeatherHandler, AmedasWetherInfo
-from src.util.time_util import TimeUtil
+from src.web.tweet.tweet_handler import TweetHandler
+from src.web.util.config_handler import ConfigHandler
+from src.web.weather.weather_handler import AmedasWeatherHandler, AmedasWetherInfo
+from src.web.util.time_util import TimeUtil
 import codecs
 
 if __name__ == "__main__":

@@ -5,7 +5,7 @@ import urllib.request as req
 from bs4 import BeautifulSoup
 import datetime
 import codecs
-from src.util.config_handler import ConfigHandler
+from src.web.util.config_handler import ConfigHandler
 
 class TrainInfoHandler():
     def __init__(self):

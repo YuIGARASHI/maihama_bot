@@ -1,8 +1,8 @@
 import sys
 sys.path.append("/home/users/0/her.jp-everyday-micmin/web/maihama_bot/")
 sys.path.append("/home/users/0/her.jp-everyday-micmin/web/maihama_bot/vendor")
-from src.train.train_info_handler import TrainInfoHandler
-from src.tweet.tweet_handler import TweetHandler
+from src.web.train.train_info_handler import TrainInfoHandler
+from src.web.tweet.tweet_handler import TweetHandler
 
 if __name__ == "__main__":
     train_info_handler = TrainInfoHandler()

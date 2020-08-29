@@ -1,8 +1,8 @@
 import sys
 sys.path.append("/home/users/0/her.jp-everyday-micmin/web/maihama_bot/")
 sys.path.append("/home/users/0/her.jp-everyday-micmin/web/maihama_bot/vendor")
-from src.weather.weather_handler import OWMWeatherHandler, WeatherEnum, OWMWeatherInfo
-from src.tweet.tweet_handler import TweetHandler
+from src.web.weather.weather_handler import OWMWeatherHandler, WeatherEnum, OWMWeatherInfo
+from src.web.tweet.tweet_handler import TweetHandler
 import datetime
 import random
 

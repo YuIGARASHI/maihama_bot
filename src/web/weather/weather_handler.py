@@ -1,8 +1,8 @@
 import sys
 sys.path.append("/home/users/0/her.jp-everyday-micmin/web/maihama_bot/")
 sys.path.append("/home/users/0/her.jp-everyday-micmin/web/maihama_bot/vendor")
-from src.util.api_key_handler import ApiKeyHandler
-from src.util.time_util import TimeUtil
+from src.web.util.api_key_handler import ApiKeyHandler
+from src.web.util.time_util import TimeUtil
 import json
 import requests
 import datetime
