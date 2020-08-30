@@ -20,6 +20,12 @@ class TweetHandler():
         api = tweepy.API(auth)
         api.update_status(tweet_str)
 
+    def post_tweet_with_img(self, tweet_str, image_path):
+        auth = tweepy.OAuthHandler(self.api_key, self.api_secret_key)
+        auth.set_access_token(self.access_token, self.secret_access_token)
+        api = tweepy.API(auth)
+        api.update_with_media(status=tweet_str, filename=image_path)
+
 
 if __name__ == "__main__":
     tweet_handler = TweetHandler()

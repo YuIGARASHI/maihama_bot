@@ -9,3 +9,7 @@ __pycache__/
 /src/tools/word_cloud/images
 /src/tools/word_cloud/texts
 /src/tools/word_cloud/output
+
+# image
+*.png
+*.jpg
