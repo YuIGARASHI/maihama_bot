@@ -31,6 +31,10 @@ class ConfigHandler:
         base_path = "tmp/shopping_goods_state.txt"
         return self.select_root_path() + base_path
 
+    def get_word_cloud_image_path(self):
+        base_path = "tmp/word_cloud_image.jpg"
+        return self.select_root_path() + base_path
+
     def select_root_path(self):
         for path in self.local_roots:
             if os.path.exists(path):
