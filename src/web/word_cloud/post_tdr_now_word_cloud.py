@@ -26,8 +26,8 @@ class PostTDRNowWordCloud:
         target_str = ""
         for tweet in tweet_list:
             # 本日の日付でなければワードクラウドに入れない
-            if tweet.created_at.split(" ")[0] != current_time:
-                continue
+            # if tweet.created_at.split(" ")[0] != current_time:
+            #     continue
             # リツイートやいいねがついているツイートは、多めにカウントする
             for i in range(1 + int(tweet.favorite_count) + int(tweet.retweet_count)):
                 # URLは文章に入れない。「TDR」「now」も入れない。
