@@ -4,6 +4,8 @@ sys.path.append("/home/users/0/her.jp-everyday-micmin/web/maihama_bot/vendor")
 from src.web.util.config_handler import ConfigHandler
 import MeCab
 import wordcloud
+import numpy as np
+from PIL import Image
 
 
 class WordClass:
@@ -42,13 +44,16 @@ class WordCloudMaker:
     def make_word_cloud_image(self, word_list):
         '''ワードクラウドを生成する。
         '''
+        # ミッキーの型にする
+        config_handler = ConfigHandler()
+        image_path = config_handler.get_mickey_image_path()
+        mask = np.array(Image.open(image_path))
         wordc = wordcloud.WordCloud(font_path='HGRGM.TTC',
                                     background_color='white',
                                     width=1280,
+                                    colormap="spring",
                                     collocations=False,
-                                    max_words=100,
-                                    min_font_size=10,
-                                    max_font_size=120,
+                                    mask=mask,
                                     height=960).generate(" ".join(word_list))
         wordc.to_file(self.image_path)
 
