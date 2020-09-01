@@ -1,4 +1,5 @@
 import sys
+
 sys.path.append("/home/users/0/her.jp-everyday-micmin/web/maihama_bot/")
 sys.path.append("/home/users/0/her.jp-everyday-micmin/web/maihama_bot/vendor")
 from src.web.util.api_key_handler import ApiKeyHandler
@@ -12,25 +13,26 @@ from bs4 import BeautifulSoup
 
 class WeatherEnum(enumerate):
     Clear = 0  # 晴れ
-    Rain = 1   # 雨
+    Rain = 1  # 雨
     Clouds = 2  # 曇り
-    Snow = 3    # 雪
-    Thunderstorm = 4 # 雷雨
-    Other = 5   # その他
+    Snow = 3  # 雪
+    Thunderstorm = 4  # 雷雨
+    Other = 5  # その他
 
 
 class OWMWeatherInfo:
     ''' OpenWeatherMapの天気情報クラス。
     '''
+
     def __init__(self, json_info):
         # 天気
-        self.weather = OWMWeatherInfo.str_to_weather(json_info["weather"][0]["main"]) # とりあえず0番目だけ取得する
+        self.weather = OWMWeatherInfo.str_to_weather(json_info["weather"][0]["main"])  # とりあえず0番目だけ取得する
         # time
         self.time = TimeUtil.unixtime_to_datestr(json_info["dt"])
         # 摂氏[℃]
         self.temp = str(int(json_info["temp"] - 273.15))
         # 降水確率[%]。Probability of precipitation の略らしい。
-        self.pop = str(int(json_info["pop"] * 100))
+        self.pop = str(float(json_info["pop"] * 100))
         # 湿度[%]
         self.humidity = str(json_info["humidity"])
         # 雲量[%]
@@ -79,8 +81,9 @@ class OWMWeatherInfo:
 class AmedasWetherInfo:
     '''アメダスの天気情報を保持するクラス。
     '''
+
     def __init__(self):
-        self.temp = -1 # 気温
+        self.temp = -1  # 気温
 
     def print_myself(self):
         print("気温：" + str(self.temp))
@@ -92,6 +95,7 @@ class OWMWeatherHandler:
     One Call API
     https://openweathermap.org/api/one-call-api
     '''
+
     def __init__(self):
         self.city_str = "Urayasu"
         self.endpoint = "https://api.openweathermap.org/data/2.5/onecall"
@@ -114,7 +118,7 @@ class OWMWeatherHandler:
             if "12:00" in target_time_str:
                 target_index = i
             if target_index != -1:
-                break # このbreakがないと、翌々日の9:00と17:00のインデクスを取得してしまう可能性がある
+                break  # このbreakがないと、翌々日の9:00と17:00のインデクスを取得してしまう可能性がある
         return target_index
 
     def fetch_tomorrow_weather_info(self):
@@ -128,14 +132,16 @@ class OWMWeatherHandler:
             "lang": self.lang
         }
         response = requests.get(url=self.endpoint, params=params)
-        weather_json =  json.loads(response.text)
+        weather_json = json.loads(response.text)
         target_index = self.get_target_time_index(weather_json)
         weather_info = OWMWeatherInfo(weather_json["hourly"][target_index])
         return weather_info
 
+
 class AmedasWeatherHandler:
     '''アメダスから天気情報を取得するクラス。
     '''
+
     def __init__(self):
         # 「江戸川臨海」のアメダス情報
         self.url = "https://tenki.jp/amedas/3/16/44136.html"
@@ -149,6 +155,7 @@ class AmedasWeatherHandler:
         # 最新時刻の気温取得
         weather_info.temp = float(soup.find(class_="amedas-table-entries").find_all("td")[2].text)
         return weather_info
+
 
 if __name__ == "__main__":
     # weather_handler = OWMWeatherHandler()

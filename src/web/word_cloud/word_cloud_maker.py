@@ -51,7 +51,8 @@ class WordCloudMaker:
         wordc = wordcloud.WordCloud(font_path='HGRGM.TTC',
                                     background_color='white',
                                     width=1280,
-                                    colormap="spring",
+                                    # colormap="spring",
+                                    colormap="cool",
                                     collocations=False,
                                     mask=mask,
                                     height=960).generate(" ".join(word_list))

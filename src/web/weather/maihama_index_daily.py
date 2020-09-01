@@ -37,7 +37,7 @@ class MaihamaIndexMaker:
         if weather_info.weather == WeatherEnum.Rain:
             maihama_index.rain_score += 1
         # 降水確率が高い場合はスコアを追加する
-        if int(weather_info.pop) > 60:
+        if float(weather_info.pop) > 60:
             maihama_index.rain_score += 1
 
         # 暴風雨スコア。暴風雨は危険なので巨大なスコアを盛る
@@ -45,16 +45,16 @@ class MaihamaIndexMaker:
             maihama_index.storm_score += 100
 
         # 紫外線スコア。天気が晴れ & 雲量が少ない場合は紫外線スコアを加算
-        if int(weather_info.temp) > 18: # 冬の快晴日を除外するため、気温が低い場合はスキップ
-            if weather_info.weather == WeatherEnum.Clear and int(weather_info.clouds) < 30:
+        if float(weather_info.temp) > 18: # 冬の快晴日を除外するため、気温が低い場合はスキップ
+            if weather_info.weather == WeatherEnum.Clear and float(weather_info.clouds) < 30:
                 maihama_index.uv_score += 1
                 # 夏日であればスコアを加算
-                if int(weather_info.temp) > 25:
+                if float(weather_info.temp) > 25:
                     maihama_index.uv_score += 1
 
         # 不快度指数
         # https://ja.wikipedia.org/wiki/不快度指数
-        discomfort_index = 0.81 * int(weather_info.temp) + 0.01 * int(weather_info.humidity) * (0.99 * int(weather_info.temp) - 14.3) + 46.3
+        discomfort_index = 0.81 * float(weather_info.temp) + 0.01 * float(weather_info.humidity) * (0.99 * float(weather_info.temp) - 14.3) + 46.3
         if discomfort_index >= 78:
             maihama_index.discomfort_score += 1
             if discomfort_index >= 85:
@@ -63,7 +63,7 @@ class MaihamaIndexMaker:
         # 風スコア。このへんは感覚でやってるので、試行錯誤の余地はけっこうありそう。
         if float(weather_info.wind_speed) > 8:
             maihama_index.wind_score += 1
-            if int(weather_info.wind_speed) > 15:
+            if float(weather_info.wind_speed) > 15:
                 maihama_index.wind_score += 1
 
         # 寒さスコア

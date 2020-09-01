@@ -1,0 +1,2 @@
+source .bash_profile
+pip3 install requests beautifulsoup4 tweepy datetime wordcloud MeCab numpy pillow mecab-python3
