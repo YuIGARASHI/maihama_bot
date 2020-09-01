@@ -41,8 +41,8 @@ class PostTDRNowWordCloud:
             # 品詞が名詞以外であればスキップ
             if "名詞" not in word_class.word_class:
                 continue
-            # 単語長さが2以下であればスキップ
-            if len(word_class.target_word) <= 2:
+            # 単語長さが1以下であればスキップ
+            if len(word_class.target_word) <= 1:
                 continue
             target_word_list.append(word_class.target_word)
 
