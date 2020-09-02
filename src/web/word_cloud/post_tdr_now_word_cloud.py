@@ -31,7 +31,7 @@ class PostTDRNowWordCloud:
             # リツイートやいいねがついているツイートは、多めにカウントする
             for i in range(1 + int(tweet.favorite_count) + int(tweet.retweet_count)):
                 # URLは文章に入れない。「TDR」「now」も入れない。
-                target_str += tweet.text.split("https")[0].replace("TDR","").replace("now","") + " "
+                target_str += tweet.text.split("https")[0].replace("TDR","").replace("now","").replace("tdr","") + " "
 
         # ターゲットの文章を形態素解析する
         word_cloud_maker = WordCloudMaker()

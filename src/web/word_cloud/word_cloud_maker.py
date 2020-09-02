@@ -49,10 +49,10 @@ class WordCloudMaker:
         image_path = config_handler.get_mickey_image_path()
         mask = np.array(Image.open(image_path))
         wordc = wordcloud.WordCloud(font_path='HGRGM.TTC',
-                                    background_color='white',
+                                    background_color='black',
                                     width=1280,
                                     # colormap="spring",
-                                    colormap="cool",
+                                    colormap="YlGn",
                                     collocations=False,
                                     mask=mask,
                                     height=960).generate(" ".join(word_list))
