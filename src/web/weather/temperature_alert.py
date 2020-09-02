@@ -28,7 +28,7 @@ if __name__ == "__main__":
     alert_flag = False
     if current_time == last_alert_date:
         # 同日に既にアラートがあがっている場合、最高気温を更新していたらアラートを出す
-        if info.temp > last_alert_temp:
+        if info.temp > last_alert_temp + 1:
             alert_flag = True
     else:
         # 同日にアラートがあがっていない場合、気温がしきい値を超えていたらアラートを出す
