@@ -51,6 +51,7 @@ class PostTDRNowWordCloud:
 
         # 作成したワードクラウドをツイート
         tweet_str = "今日はパークでこんなことがあったみたい！うふふ💕\n"
+        tweet_str += "#ディズニーランド #東京ディズニーシー #TDL #TDS\n"
         tweet_handler.post_tweet_with_img(tweet_str, self.image_path)
 
 if __name__ == "__main__":

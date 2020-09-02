@@ -112,6 +112,9 @@ class MaihamaIndexMaker:
         # メッセージ
         tweet_str +=  message_str
 
+        # ハッシュタグ
+        tweet_str += "#ディズニーランド #東京ディズニーシー #TDL #TDS\n"
+
         return tweet_str
 
 if __name__ == "__main__":

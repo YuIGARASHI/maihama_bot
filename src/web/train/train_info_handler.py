@@ -22,7 +22,8 @@ class TrainInfoHandler():
     def make_tweet_str(self, status_detail):
         dt_now = datetime.datetime.now().strftime('%m月%d日 %H:%M')  # => 「02月04日 21:04」
         tweet_str = "💛京葉線の運行状況が変わったわよ～💛\n"
-        tweet_str += status_detail.replace("。","♪うふふ💕") + "\n"
+        tweet_str += status_detail.replace("。","♪うふふ💕")
+        tweet_str += "#舞浜\n"
         tweet_str += self.url
         return tweet_str
 

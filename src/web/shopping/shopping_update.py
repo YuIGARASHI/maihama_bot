@@ -25,7 +25,8 @@ if __name__ == "__main__":
     tweet_str = "ミニーのグッズ情報が更新されたよ～💕\n\n"
     tweet_str += "【🎀" + name + "】" + "\n"
     tweet_str += "商品ページ👉 " + goods_link  + "\n\n"
-    tweet_str += url
+    tweet_str += url + "\n"
+    tweet_str += "#ディズニー\n"
     tweet_handler.post_tweet(tweet_str)
     f = codecs.open(file_path, "w", "utf-8")
     f.write(name)

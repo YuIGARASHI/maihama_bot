@@ -26,7 +26,9 @@ if __name__ == "__main__":
     info = weather_handler.fetch_realtime_weather_info()
     if info.temp > threshold_temperature:
         tweet_handler = TweetHandler()
-        tweet_handler.post_tweet("あつーい！いま" + str(info.temp) + "℃もあるわ～💦\n水分補給を忘れずにね❣")
+        message_str = "あつーい！いま" + str(info.temp) + "℃もあるわ～💦\n水分補給を忘れずにね❣\n"
+        message_str += "#ディズニーランド #東京ディズニーシー #TDL #TDS\n"
+        tweet_handler.post_tweet(message_str)
         # アラートを上げた日次を更新
         f = codecs.open(file_path, "w", "utf-8")
         f.write(current_time)
