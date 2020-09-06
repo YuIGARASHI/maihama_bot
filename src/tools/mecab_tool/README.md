@@ -1,0 +1,1 @@
+/static_data/disney-dic.csv をコンパイルして /tmp/disney_dic.dic に反映させる。

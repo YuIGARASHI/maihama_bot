@@ -77,4 +77,4 @@ if __name__=="__main__":
     ret_list = word_cloud_maker.decompose_words("これはサンプルの文章です。")
     for word_class in ret_list:
         print(word_class.target_word, word_class.word_class)
-    word_cloud_maker.make_sample("これはサンプルの文章です。")
+    # word_cloud_maker.make_sample("これはサンプルの文章です。")
