@@ -1,6 +1,5 @@
 import sys
 sys.path.append("/home/users/0/her.jp-everyday-micmin/web/maihama_bot/")
-sys.path.append("/home/users/0/her.jp-everyday-micmin/web/maihama_bot/vendor")
 import urllib.request as req
 from bs4 import BeautifulSoup
 from src.web.tweet.tweet_handler import TweetHandler

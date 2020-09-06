@@ -1,6 +1,5 @@
 import sys
 sys.path.append("/home/users/0/her.jp-everyday-micmin/web/maihama_bot/")
-sys.path.append("/home/users/0/her.jp-everyday-micmin/web/maihama_bot/vendor")
 import datetime
 
 class TimeUtil:

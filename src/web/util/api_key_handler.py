@@ -1,6 +1,5 @@
 import sys
 sys.path.append("/home/users/0/her.jp-everyday-micmin/web/maihama_bot/")
-sys.path.append("/home/users/0/her.jp-everyday-micmin/web/maihama_bot/vendor")
 from src.web.util.config_handler import ConfigHandler
 import json
 
