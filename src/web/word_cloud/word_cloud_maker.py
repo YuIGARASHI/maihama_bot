@@ -12,10 +12,10 @@ class WordClass:
         splited = word_str.split("\t")
         self.target_word = ""
         self.word_class = ""
-        if len(splited) <=4:
+        if len(splited) <=1:
             return
         self.target_word = splited[0]  # 対象の語。例：「サンプル」
-        self.word_class = splited[4]   # 品詞。例：「名詞-普通名詞-一般」
+        self.word_class = splited[1].split(",")[0]   # 品詞。例：「名詞-普通名詞-一般」
 
 
 class WordCloudMaker:
