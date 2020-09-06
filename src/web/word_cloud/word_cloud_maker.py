@@ -32,7 +32,8 @@ class WordCloudMaker:
         word_class_list : array-like(WordClass)
             sentenceを形態素解析して出現した語のオブジェクト配列。
         '''
-        m = MeCab.Tagger("")
+        # 辞書のパスはローカルのものをベタ打ち
+        m = MeCab.Tagger("-d \"C:\Program Files\MeCab\dic\ipadic\"")
         text = sentence.replace('\r', '')
         parsed_content = m.parse(text)
         word_class_list = []
@@ -49,10 +50,9 @@ class WordCloudMaker:
         image_path = config_handler.get_mickey_image_path()
         mask = np.array(Image.open(image_path))
         wordc = wordcloud.WordCloud(font_path='HGRGM.TTC',
-                                    background_color='black',
+                                    background_color='white',
                                     width=1280,
-                                    # colormap="spring",
-                                    colormap="YlGn",
+                                    colormap="spring",
                                     collocations=False,
                                     mask=mask,
                                     height=960).generate(" ".join(word_list))
